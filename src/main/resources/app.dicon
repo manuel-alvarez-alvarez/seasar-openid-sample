@@ -5,36 +5,17 @@
 	<include path="aop.dicon"/>
 	<include path="s2struts.dicon"/>
 
-	<component name="actionInterceptorChain"
+	<component name="serviceInterceptorChain"
 			   class="org.seasar.framework.aop.interceptors.InterceptorChain">
-		<initMethod name="add">
-			<arg>aop.traceInterceptor</arg>
-			<arg>aop.syncInterceptor</arg>
-			<arg>aop.traceThrowsInterceptor</arg>
-			<arg>aop.lifecycleAdapter</arg>
-			<arg>aop.toStringInterceptor</arg>
-		</initMethod>
+		<initMethod name="add"><arg>aop.traceInterceptor</arg></initMethod>
+		<initMethod name="add"><arg>aop.syncInterceptor</arg></initMethod>
+		<initMethod name="add"><arg>aop.traceThrowsInterceptor</arg></initMethod>
 	</component>
 
-	<component
-			class="org.seasar.framework.container.autoregister.FileSystemComponentAutoRegister">
-		<property name="instanceDef">
-			@org.seasar.framework.container.deployer.InstanceDefFactory@REQUEST
-		</property>
-		<property name="autoNaming">
-			<component class="org.seasar.framework.container.autoregister.DefaultAutoNaming"/>
-		</property>
-		<initMethod name="addClassPattern">
-			<arg>"examples.action"</arg>
-			<arg>".*Action"</arg>
-		</initMethod>
-	</component>
-	<component class="org.seasar.framework.container.autoregister.AspectAutoRegister">
-		<property name="interceptor">actionInterceptorChain</property>
-		<initMethod name="addClassPattern">
-			<arg>"examples.action"</arg>
-			<arg>".*Action"</arg>
-		</initMethod>
+
+	<component name="loginService" class="examples.LoginService">
+		<aspect pointcut=".*">serviceInterceptorChain</aspect>
+		<aspect pointcut="toString">aop.toStringInterceptor</aspect>
 	</component>
 
 </components>

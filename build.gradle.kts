@@ -19,7 +19,6 @@ val seasarVersion = "2.3.23"
 dependencies {
     implementation("org.seasar.container:s2-extension:$seasarVersion")
     implementation("org.seasar.container:s2-framework:$seasarVersion")
-    implementation("org.seasar.container:s2-tiger:$seasarVersion")
     implementation("org.seasar.struts:s2-struts:1.2.12")
 
     // you have to compile your own
