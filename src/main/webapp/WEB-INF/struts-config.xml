@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+        "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+    <!-- ======================================== Form Bean Definitions -->
+
+    <form-beans>
+        <form-bean
+                name="loginDto"
+                type="examples.dto.LoginDto" />
+    </form-beans>
+
+    <!-- ================================= Global Exception Definitions -->
+
+    <global-exceptions>
+    </global-exceptions>
+
+    <!-- =================================== Global Forward Definitions -->
+
+    <global-forwards>
+
+    </global-forwards>
+
+    <!-- =================================== Action Mapping Definitions -->
+
+    <action-mappings type="org.apache.struts.action.RequestActionMapping">
+        <action
+                path="/login"
+                type="examples.action.LoginAction"
+                name="loginDto"
+                scope="request"
+                validate="true" />
+    </action-mappings>
+
+
+    <!-- ===================================== Controller Configuration -->
+
+    <controller processorClass="org.seasar.struts.processor.S2RequestProcessor"/>
+
+
+    <!-- ================================ Message Resources Definitions -->
+
+    <message-resources parameter="application"/>
+
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property
+                property="pathnames"
+                value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+    </plug-in>
+
+
+</struts-config>
